@@ -12,6 +12,7 @@ public class Proveedor {
     private String telefono;
     private String direccion;
     
+    
     public Proveedor(){
         
     }
@@ -22,6 +23,8 @@ public class Proveedor {
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
+        
+        
     }
 
     public int getId() {
@@ -63,5 +66,7 @@ public class Proveedor {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    
     
 }

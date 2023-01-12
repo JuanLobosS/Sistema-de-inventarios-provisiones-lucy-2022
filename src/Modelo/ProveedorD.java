@@ -23,7 +23,7 @@ public class ProveedorD {
     PreparedStatement ps;
     ResultSet rs;
     public boolean RegistrarProveedor(Proveedor pr){
-        String sql = "INSERT INTO proveedor(rut, nombre, telefono, direccion) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO proveedor(rut, nombre, telefono, direccion, empresa) VALUES (?,?,?,?,?)";
         try {
            con = cn.getConnection();
            ps = con.prepareStatement(sql);
@@ -31,6 +31,7 @@ public class ProveedorD {
            ps.setString(2, pr.getNombre());
            ps.setString(3, pr.getTelefono());
            ps.setString(4, pr.getDireccion());
+           
            ps.execute();
            return true;
         } catch (SQLException e) {
@@ -59,6 +60,7 @@ public class ProveedorD {
                 pr.setNombre(rs.getString("nombre"));
                 pr.setTelefono(rs.getString("telefono"));
                 pr.setDireccion(rs.getString("direccion"));
+                
                 Listapr.add(pr);
             }
             
@@ -98,6 +100,7 @@ public class ProveedorD {
             ps.setString(2, pr.getNombre());
             ps.setString(3, pr.getTelefono());
             ps.setString(4, pr.getDireccion());
+            
             ps.setInt(5, pr.getId());
             ps.execute();
             return true;
@@ -115,8 +118,8 @@ public class ProveedorD {
     
     public DefaultTableModel buscarProveedoresFiltro(String buscar)
     {
-        String [] nombreColumna={"id","rut","nombre","telefono","direccion"};
-        String [] registros = new String[5];
+        String [] nombreColumna={"id","rut","nombre","telefono","direccion","empresa"};
+        String [] registros = new String[6];
         DefaultTableModel modelo = new DefaultTableModel(null, nombreColumna);
         
         String sql ="SELECT * FROM proveedor WHERE rut LIKE '%"+buscar+"%' OR nombre LIKE '%"+buscar+"%'";
@@ -132,6 +135,7 @@ public class ProveedorD {
             registros[2]=rs.getString("nombre");
             registros[3]=rs.getString("telefono");
             registros[4]=rs.getString("direccion");
+            
             
             modelo.addRow(registros);
             }
